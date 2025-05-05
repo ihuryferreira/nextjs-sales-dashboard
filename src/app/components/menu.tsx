@@ -14,7 +14,7 @@ export function Menu() {
         <MenubarTrigger className="cursor-pointer" onClick={() => router.push("/")}>Home</MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger className="cursor-pointer">Tabela</MenubarTrigger>
+        <MenubarTrigger className="cursor-pointer" onClick={() => router.push("/tabela")}>Tabela</MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger className="cursor-pointer">Gráfico de Venda</MenubarTrigger>

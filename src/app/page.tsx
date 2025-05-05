@@ -9,7 +9,7 @@ import { Menu } from "./components/menu";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center min-h-dvh bg-[#11032b]">
+    <div className="flex flex-col justify-center min-h-dvh bg-[hsl(261,87%,9%)]">
       <h1 className="text-3xl font-bold text-center mt-4 py-4 text-white">
         Formulário de Vendas
       </h1>
