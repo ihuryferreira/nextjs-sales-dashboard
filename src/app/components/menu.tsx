@@ -7,25 +7,25 @@ import Link from "next/link";
 
 export function Menu() {
   return (
-    <Menubar className="flex justify-between items-center w-[90%] rounded-[4px] m-auto">
+    <Menubar className="flex justify-between items-center w-[90%] rounded-[4px] m-auto py-6">
       <MenubarMenu>
         <MenubarTrigger>
-          <Link href={`/`}>
-            🏠 Home
+          <Link href={`/`} className="text-3xl">
+            🏠
           </Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-          <Link href={`/tabela`}>
-            📋 Tabela de Vendas
+          <Link href={`/tabela`} className="text-3xl">
+            📋
           </Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-          <Link href={`/grafico`}>
-            📊 Gráfico de Venda
+          <Link href={`/grafico`} className="text-3xl">
+            📊
           </Link>
         </MenubarTrigger>
       </MenubarMenu>
