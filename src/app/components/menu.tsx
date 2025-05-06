@@ -1,23 +1,33 @@
-"use client";
 import {
   Menubar,
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function Menu() {
-  const router = useRouter();
   return (
     <Menubar className="flex justify-between items-center w-[90%] rounded-[4px] m-auto">
       <MenubarMenu>
-        <MenubarTrigger className="cursor-pointer" onClick={() => router.push("/")}>Home</MenubarTrigger>
+        <MenubarTrigger>
+          <Link href={`/`}>
+            🏠 Home
+          </Link>
+        </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger className="cursor-pointer" onClick={() => router.push("/tabela")}>Tabela</MenubarTrigger>
+        <MenubarTrigger>
+          <Link href={`/tabela`}>
+            📋 Tabela de Vendas
+          </Link>
+        </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger className="cursor-pointer">Gráfico de Venda</MenubarTrigger>
+        <MenubarTrigger>
+          <Link href={`/grafico`}>
+            📊 Gráfico de Venda
+          </Link>
+        </MenubarTrigger>
       </MenubarMenu>
     </Menubar>
   );

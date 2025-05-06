@@ -153,7 +153,7 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
-        <Button className="w-full rounded-full text-lg" type="submit">
+        <Button className="w-full rounded-full text-lg hover:text-[#e2e2e2]" type="submit">
           Gravar dados...
         </Button>
       </form>
