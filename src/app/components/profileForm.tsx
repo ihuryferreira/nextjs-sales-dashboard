@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/select";
 
 import { adicionarVenda, obterDadosLocalmente } from "@/app/services/formService";
+import { Loader2Icon } from "lucide-react";
 
 // Definição do esquema com valores válidos
 const formSchema = z.object({
@@ -39,6 +40,8 @@ const formSchema = z.object({
 });
 
 export function ProfileForm() {
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     obterDadosLocalmente();
   }, []);
@@ -53,32 +56,39 @@ export function ProfileForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const dadosAtualizados = adicionarVenda({
-        ...values,
-        percentage: Number(values.percentage ?? "0.065"),
-      });
-      console.log("Dados atualizados:", dadosAtualizados);
-      alert("Dados salvos com sucesso!");
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error("Erro ao salvar:", error.message);
-        alert("Erro ao salvar os dados. Verifique os valores e tente novamente.");
-      } else {
-        console.error("Erro ao salvar:", error);
-        alert("Erro inesperado ao salvar os dados.");
+    setLoading(true);
+
+    setTimeout(() => {
+      try {
+        const dadosAtualizados = adicionarVenda({
+          ...values,
+          percentage: Number(values.percentage ?? "0.065"),
+        });
+
+        console.log("Dados atualizados:", dadosAtualizados);
+        alert("Dados salvos com sucesso!");
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Erro ao salvar:", error.message);
+          alert("Erro ao salvar os dados. Verifique os valores e tente novamente.");
+        } else {
+          console.error("Erro ao salvar:", error);
+          alert("Erro inesperado ao salvar os dados.");
+        }
       }
-    }
 
-    // Reseta os valores do formulário
-    form.reset({
-      username: "",
-      sale: undefined,
-      percentage: undefined,
-    });
+      // Reseta os valores do formulário
+      form.reset({
+        username: "",
+        sale: undefined,
+        percentage: undefined,
+      });
 
-    // Reseta manualmente o valor do Select
-    form.setValue("percentage", undefined);
+      // Reseta manualmente o valor do Select
+      form.setValue("percentage", undefined);
+
+      setLoading(false);
+    }, 5000);
   }
 
   return (
@@ -153,8 +163,8 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
-        <Button className="w-full rounded-full text-lg hover:text-[#e2e2e2]" type="submit">
-          Gravar dados...
+        <Button className="w-full rounded-full text-lg hover:text-[#e2e2e2]" type="submit" disabled={loading}>
+          {loading ? <Loader2Icon className="animate-spin" /> : "Gravar dados..."}
         </Button>
       </form>
     </Form>
