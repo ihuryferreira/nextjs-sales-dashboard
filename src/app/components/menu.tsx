@@ -11,21 +11,21 @@ export function Menu() {
       <MenubarMenu>
         <MenubarTrigger>
           <Link href={`/`} className="text-3xl">
-            🏠
+            🏠 <span className="sr-only sm:not-sr-only">Home</span>
           </Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
           <Link href={`/tabela`} className="text-3xl">
-            📋
+            📋 <span className="sr-only sm:not-sr-only">Tabela</span>
           </Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
           <Link href={`/grafico`} className="text-3xl">
-            📊
+            📊 <span className="sr-only sm:not-sr-only">Gráfico</span>
           </Link>
         </MenubarTrigger>
       </MenubarMenu>
