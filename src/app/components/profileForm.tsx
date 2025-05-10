@@ -153,6 +153,7 @@ export function ProfileForm() {
                   <Input
                     {...field}
                     value={field.value ?? ""}
+                    className="placeholder:text-base"
                     placeholder="ex: 100 ou 127.50"
                   />
                 </FormControl>

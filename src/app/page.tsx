@@ -16,8 +16,8 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center py-4">
         <Card className="w-[90%]">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-semibold">Registro de Vendas</CardTitle>
-            <CardDescription className="mt-4">Registre suas vendas com rapidez e facilidade.</CardDescription>
+            <CardTitle className="text-[#1e0b42] text-3xl font-semibold uppercase">Registro de Vendas</CardTitle>
+            <CardDescription className="mt-4 text-[#38343f]">Registre suas vendas com rapidez e facilidade.</CardDescription>
           </CardHeader>
           <ProfileForm />
         </Card>
