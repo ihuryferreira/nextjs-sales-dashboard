@@ -30,15 +30,22 @@ import "primeicons/primeicons.css";
 
 // Definição do esquema com valores válidos
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "O nome deve ter pelo menos 2 caracteres.",
-  }),
+  username: z
+    .string()
+    .min(2, {
+      message: "O nome deve ter pelo menos 2 caracteres.",
+    })
+    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/, {
+      message: "O nome deve conter apenas letras e espaços.",
+    }),
   sale: z.coerce.number().positive().min(0.01, {
     message: "O valor deve ser maior que 0.",
   }),
-  percentage: z.enum(["0.065", "0.04", "10", "5"], {
-    errorMap: () => ({ message: "Selecione um tipo de seguro válido." }),
-  }).optional(),
+  percentage: z
+    .enum(["0.065", "0.04", "10", "5"], {
+      errorMap: () => ({ message: "Selecione um tipo de seguro válido." }),
+    })
+    .optional(),
 });
 
 export function ProfileForm() {

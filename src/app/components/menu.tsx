@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export function Menu() {
   return (
-    <Menubar className="flex justify-between items-center w-[90%] rounded-[4px] m-auto py-6">
+    <Menubar className="flex justify-between items-center w-[90%] rounded-[4px] m-auto py-6 text-foreground-black">
       <MenubarMenu>
         <MenubarTrigger>
           <Link href={`/`} className="text-3xl">

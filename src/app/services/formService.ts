@@ -33,6 +33,15 @@ export function adicionarVenda({ username, sale, percentage }: VendaInput) {
     throw new Error("Dados inválidos! Nome e venda devem ser preenchidos corretamente.");
   }
 
+  // Verifica se o nome contém apenas letras e espaços
+  const nomeValido = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+  if (!nomeValido.test(username)) {
+    throw new Error("Nome inválido! O nome deve conter apenas letras e espaços.");
+  }
+
+  // Converte o nome para maiúsculas
+  username = username.toUpperCase();
+
   const novaVenda = {
     username,
     sale,
