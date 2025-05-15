@@ -1,8 +1,14 @@
 const LOCAL_STORAGE_KEY = "salesData";
+const LOCAL_STORAGE_KEY_TOTAL = "totalSalesData";
 
 // Função para recuperar os dados do localStorage
 export function obterDadosLocalmente() {
   const dadosSalvos = localStorage.getItem(LOCAL_STORAGE_KEY);
+  return dadosSalvos ? JSON.parse(dadosSalvos) : [];
+}
+
+export function obterDadosTotalLocalmente() {
+  const dadosSalvos = localStorage.getItem(LOCAL_STORAGE_KEY_TOTAL);
   return dadosSalvos ? JSON.parse(dadosSalvos) : [];
 }
 
@@ -18,6 +24,10 @@ interface Venda {
 // Função para salvar os dados no localStorage
 export function salvarDadosLocalmente(dados: Venda[]) {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dados));
+}
+
+export function salvarDadosTotalLocalmente(dados: Venda[]) {
+  localStorage.setItem(LOCAL_STORAGE_KEY_TOTAL, JSON.stringify(dados));
 }
 
 // Função para adicionar uma nova venda
@@ -53,6 +63,7 @@ export function adicionarVenda({ username, sale, percentage }: VendaInput) {
   const dadosAtuais = obterDadosLocalmente();
   dadosAtuais.push(novaVenda);
   salvarDadosLocalmente(dadosAtuais);
+  // Se quiser salvar totais, pode atualizar aqui, mas o return deve ser apenas os dados atuais
   return dadosAtuais;
 }
 

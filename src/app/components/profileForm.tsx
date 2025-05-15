@@ -72,7 +72,7 @@ export function ProfileForm() {
       try {
         const dadosAtualizados = adicionarVenda({
           ...values,
-          percentage: Number(values.percentage ?? "0.065"),
+          percentage: Number(values.percentage ?? "0"),
         });
 
         console.log("Dados atualizados:", dadosAtualizados);
@@ -177,9 +177,15 @@ export function ProfileForm() {
                 <FormControl>
                   <Select onValueChange={field.onChange} value={field.value || ""}>
                     <SelectTrigger className="w-[100%]">
-                      <SelectValue placeholder="Selecione o seguro" />
+                      <SelectValue placeholder="Selecione uma porcentagem..." />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="0.01">
+                        Venda de Produto com 1% de comissão
+                      </SelectItem>
+                      <SelectItem value="0.02">
+                        Venda de Produto com 2% de comissão
+                      </SelectItem>
                       <SelectItem value="0.065">
                         Garantia Estendida e Troca Certa 6.5%
                       </SelectItem>

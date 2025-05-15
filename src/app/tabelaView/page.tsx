@@ -47,33 +47,58 @@ const Tabela = () => {
                 <TableRow>
                   <TableHead className="px-4 py-2 text-white text-left font-bold">Nome do Vendedor</TableHead>
                   <TableHead className="px-4 py-2 text-white text-left font-bold">Valor da Venda</TableHead>
+                  <TableHead className="px-4 py-2 text-white text-left font-bold">Porcentagem da comissão</TableHead>
                   <TableHead className="px-4 py-2 text-white text-left font-bold">Valor da Comissão</TableHead>
-                  <TableHead className="px-4 py-2 text-white text-left font-bold">Valor Total da Comissão</TableHead>
                   <TableHead className="px-4 py-2 text-white text-left font-bold">Data da Venda</TableHead>
                   <TableHead className="px-4 py-2 text-white text-left font-bold">Horário da venda</TableHead>
                   <TableHead className="px-4 py-2 text-white text-left font-bold">Excluir</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {dados.map((venda, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="px-4 py-2">{venda.username}</TableCell>
-                    <TableCell className="px-4 py-2">R$ {venda.sale.toFixed(2)}</TableCell>
-                    <TableCell className="px-4 py-2">{(venda.percentage * 100).toFixed(2)}%</TableCell>
-                    <TableCell className="px-4 py-2">R$ {(venda.sale * venda.percentage).toFixed(2)}</TableCell>
-                    <TableCell className="px-4 py-2">{venda.date}</TableCell>
-                    <TableCell className="px-4 py-2">{venda.time}</TableCell>
-                    <TableCell className="px-4 py-2">
-                      <Button
-                        variant="destructive"
-                        className="rounded-full"
-                        onClick={() => handleRemoverVenda(index)}
-                      >
-                        Excluir
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {/* {dados.map((venda, index) => {
+                  // Soma acumulada da comissão até a venda atual
+                  const totalComissao = dados.slice(0, index + 1).reduce((acc, v) => acc + v.sale * v.percentage, 0);
+                  return (
+                    <TableRow key={index}>
+                      <TableCell className="px-4 py-2">{venda.username}</TableCell>
+                      <TableCell className="px-4 py-2">R$ {venda.sale.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                      <TableCell className="px-4 py-2">{(venda.percentage * 100).toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%</TableCell>
+                      <TableCell className="px-4 py-2">R$ {totalComissao.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                      <TableCell className="px-4 py-2">{venda.date}</TableCell>
+                      <TableCell className="px-4 py-2">{venda.time}</TableCell>
+                      <TableCell className="px-4 py-2">
+                        <Button
+                          variant="destructive"
+                          className="rounded-full"
+                          onClick={() => handleRemoverVenda(index)}
+                        >
+                          Excluir
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })} */}
+                {dados.map((venda, index) => {
+                  return (
+                    <TableRow key={index}>
+                      <TableCell className="px-4 py-2">{venda.username}</TableCell>
+                      <TableCell className="px-4 py-2">R$ {venda.sale.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                      <TableCell className="px-4 py-2">{(venda.percentage * 100).toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%</TableCell>
+                      <TableCell className="px-4 py-2">R$ {(venda.sale * venda.percentage).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                      <TableCell className="px-4 py-2">{venda.date}</TableCell>
+                      <TableCell className="px-4 py-2">{venda.time}</TableCell>
+                      <TableCell className="px-4 py-2">
+                        <Button
+                          variant="destructive"
+                          className="rounded-full"
+                          onClick={() => handleRemoverVenda(index)}
+                        >
+                          Excluir
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </div>
