@@ -37,7 +37,7 @@ const Tabela = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center min-h-dvh bg-[hsl(261,87%,9%)]">
+    <div className="flex flex-col justify-between items-center min-h-dvh bg-[hsl(261,87%,9%)] lg:min-h-screen">
       <div className="w-full flex flex-col items-center h-full px-4">
         <h1 className="text-3xl text-center text-white my-5 sm:text-5xl">Tabela de Vendas</h1>
         <ScrollArea className="flex justify-center items-center h-full w-full">
