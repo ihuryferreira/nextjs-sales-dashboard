@@ -48,7 +48,11 @@ const formSchema = z.object({
     .optional(),
 });
 
-export function ProfileForm() {
+interface ProfileFormProps {
+  onVendaAdicionada: () => void;
+}
+
+export function ProfileForm({ onVendaAdicionada }: ProfileFormProps) {
   const [loading, setLoading] = useState(false);
   const toast = useRef<Toast>(null);
 
@@ -70,12 +74,15 @@ export function ProfileForm() {
 
     setTimeout(() => {
       try {
-        const dadosAtualizados = adicionarVenda({
+        adicionarVenda({
           ...values,
-          percentage: Number(values.percentage ?? "0"),
+          percentage: Number(values.percentage ?? "0.065"),
         });
 
-        console.log("Dados atualizados:", dadosAtualizados);
+        // Chama o callback para atualizar os totais na tela principal
+        if (onVendaAdicionada) {
+          onVendaAdicionada();
+        }
 
         // Exibe a notificação de sucesso
         toast.current?.show({
@@ -105,8 +112,6 @@ export function ProfileForm() {
           sale: undefined,
           percentage: undefined,
         });
-
-        // Reseta manualmente o valor do Select
         form.setValue("percentage", undefined);
       } catch (error) {
         if (error instanceof Error) {
@@ -124,9 +129,7 @@ export function ProfileForm() {
 
   return (
     <>
-      {/* Componente Toast para exibir notificações */}
       <Toast ref={toast} />
-
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
