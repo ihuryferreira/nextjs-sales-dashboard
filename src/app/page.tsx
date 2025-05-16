@@ -24,7 +24,11 @@ export default function Home() {
     const dadosSalvos = obterDadosLocalmente();
     if (Array.isArray(dadosSalvos)) {
       const totalVendasCalc = dadosSalvos.reduce((acc: number, venda: Venda) => acc + Number(venda.sale || 0), 0);
-      const totalComissaoCalc = dadosSalvos.reduce((acc: number, venda: Venda) => acc + Number(venda.sale || 0) * Number(venda.percentage || 0), 0);
+      const totalComissaoCalc = dadosSalvos.reduce(
+        (acc: number, venda: Venda) =>
+          acc + Math.round((Number(venda.sale || 0) * Number(venda.percentage || 0)) * 100) / 100,
+        0
+      );
       setTotalVendas(totalVendasCalc);
       setTotalComissao(totalComissaoCalc);
     } else {
