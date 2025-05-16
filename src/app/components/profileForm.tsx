@@ -42,7 +42,7 @@ const formSchema = z.object({
     message: "O valor deve ser maior que 0.",
   }),
   percentage: z
-    .enum(["0.065", "0.04", "10", "5"], {
+    .enum(["0", "0.01", "0.02", "0.065", "0.04", "10", "5"], {
       errorMap: () => ({ message: "Selecione um tipo de seguro válido." }),
     })
     .optional(),
@@ -76,7 +76,7 @@ export function ProfileForm({ onVendaAdicionada }: ProfileFormProps) {
       try {
         adicionarVenda({
           ...values,
-          percentage: Number(values.percentage ?? "0.065"),
+          percentage: Number(values.percentage ?? "0.00"),
         });
 
         // Chama o callback para atualizar os totais na tela principal

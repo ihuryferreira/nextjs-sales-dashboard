@@ -52,6 +52,9 @@ export function adicionarVenda({ username, sale, percentage }: VendaInput) {
   // Converte o nome para maiúsculas
   username = username.toUpperCase();
 
+  // Garante que percentage é número
+  percentage = Number(percentage);
+
   const novaVenda = {
     username,
     sale,
