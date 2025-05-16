@@ -14,6 +14,7 @@ import { obterDadosLocalmente } from "@/app/services/formService";
 interface Venda {
   sale: number;
   percentage: number;
+  date: string; // Adiciona a propriedade 'date'
 }
 
 export default function Home() {
@@ -23,8 +24,20 @@ export default function Home() {
   const atualizarTotais = useCallback(() => {
     const dadosSalvos = obterDadosLocalmente();
     if (Array.isArray(dadosSalvos)) {
-      const totalVendasCalc = dadosSalvos.reduce((acc: number, venda: Venda) => acc + Number(venda.sale || 0), 0);
-      const totalComissaoCalc = dadosSalvos.reduce(
+      // Filtra vendas apenas do mês e ano atual
+      const now = new Date();
+      const mesAtual = now.getMonth() + 1;
+      const anoAtual = now.getFullYear();
+      const dadosDoMes = dadosSalvos.filter((venda: Venda) => {
+        if (!venda.date) return false;
+        const partesData = venda.date.split("/");
+        if (partesData.length !== 3) return false;
+        const mes = Number(partesData[1]);
+        const ano = Number(partesData[2]);
+        return mes === mesAtual && ano === anoAtual;
+      });
+      const totalVendasCalc = dadosDoMes.reduce((acc: number, venda: Venda) => acc + Number(venda.sale || 0), 0);
+      const totalComissaoCalc = dadosDoMes.reduce(
         (acc: number, venda: Venda) =>
           acc + Math.round((Number(venda.sale || 0) * Number(venda.percentage || 0)) * 100) / 100,
         0
