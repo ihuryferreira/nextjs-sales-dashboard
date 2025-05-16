@@ -22,7 +22,19 @@ const Tabela = () => {
     try {
       const dadosSalvos = obterDadosLocalmente();
       if (Array.isArray(dadosSalvos)) {
-        setDados(dadosSalvos);
+        // Filtra vendas apenas do mês e ano atual
+        const now = new Date();
+        const mesAtual = now.getMonth() + 1; // Janeiro = 0
+        const anoAtual = now.getFullYear();
+        const dadosDoMes = dadosSalvos.filter((venda: Venda) => {
+          // data no formato dd/mm/yyyy
+          const partesData = venda.date.split("/");
+          if (partesData.length !== 3) return false;
+          const mes = Number(partesData[1]);
+          const ano = Number(partesData[2]);
+          return mes === mesAtual && ano === anoAtual;
+        });
+        setDados(dadosDoMes);
       } else {
         console.error("Dados no localStorage não estão no formato esperado.");
       }
