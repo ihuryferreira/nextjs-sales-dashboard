@@ -65,8 +65,10 @@ export function ProfileForm({ onVendaAdicionada }: ProfileFormProps) {
     obterDadosLocalmente();
   }, []);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  type FormValues = z.infer<typeof formSchema>;
+  const form = useForm<FormValues>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(formSchema) as any,
     defaultValues: {
       username: "",
       sale: undefined,
