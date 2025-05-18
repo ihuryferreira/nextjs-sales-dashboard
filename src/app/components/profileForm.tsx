@@ -38,13 +38,18 @@ const formSchema = z.object({
     .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/, {
       message: "O nome deve conter apenas letras e espaços.",
     }),
-  sale: z.coerce.number().positive().min(0.01, {
-    message: "O valor deve ser maior que 0.",
-  }),
+  sale: z
+    .preprocess((val) => (val === "" || val === undefined ? undefined : Number(val)),
+      z.number({
+        required_error: "O valor deve ser maior que 0.",
+        invalid_type_error: "O valor deve ser maior que 0."
+      })
+    )
+    .refine((val) => typeof val === "number" && !isNaN(val) && val > 0, {
+      message: "O valor deve ser maior que 0.",
+    }),
   percentage: z
-    .enum(["0", "0.01", "0.02", "0.065", "0.04", "10", "5"], {
-      errorMap: () => ({ message: "Selecione um tipo de seguro válido." }),
-    })
+    .enum(["0", "0.01", "0.02", "0.065", "0.04", "10", "5"])
     .optional(),
 });
 
