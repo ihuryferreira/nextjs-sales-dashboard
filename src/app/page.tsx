@@ -73,6 +73,14 @@ export default function Home() {
               <CardDescription className="mt-2 text-[#38343f] text-2xl font-bold">R$ {totalComissao.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</CardDescription>
             </CardHeader>
           </Card>
+          <Card className="flex-1 bg-[#f8fafc]">
+            <CardHeader className="text-center">
+              <CardTitle className="text-[#1e0b42] text-xl font-semibold uppercase">Total de Vendas no mês</CardTitle>
+              <CardDescription className="mt-2 text-[#38343f] text-2xl font-bold">
+                R$ {(totalVendas + totalComissao).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </div>
         <Card className="w-[90%]">
           <CardHeader className="text-center">
