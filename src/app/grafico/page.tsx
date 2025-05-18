@@ -93,7 +93,7 @@ const GraficoVendas = () => {
           </div>
         </div>
         <div className="w-full overflow-x-auto">
-          <div className="bg-white w-[92%] py-5 m-auto rounded">
+          <div className="bg-white w-full md:w-[92%] py-5 m-auto rounded">
             <h2 className="text-lg text-black font-bold pl-4">Selecione o mês e ano</h2>
             <input
               type="month"
@@ -102,7 +102,7 @@ const GraficoVendas = () => {
               onChange={e => setMesAno(e.target.value)}
             />
           </div>
-          <div className="bg-white w-[92%] py-5 m-auto rounded my-6">
+          <div className="bg-white w-full md:w-[92%] py-5 m-auto rounded my-6">
             {dadosDiaSemana.every(d => d.vendas === 0) ? (
               <div className="text-center text-gray-500 py-10">Nenhum dado para o mês/ano selecionado.</div>
             ) : (
