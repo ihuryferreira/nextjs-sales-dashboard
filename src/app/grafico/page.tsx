@@ -102,20 +102,22 @@ const GraficoVendas = () => {
               onChange={e => setMesAno(e.target.value)}
             />
           </div>
-          <div className="bg-white w-full md:w-[92%] py-5 m-auto rounded my-6">
+          <div className="bg-white w-full md:w-[92%] py-5 m-auto rounded my-6 overflow-x-auto">
             {dadosDiaSemana.every(d => d.vendas === 0) ? (
               <div className="text-center text-gray-500 py-10">Nenhum dado para o mês/ano selecionado.</div>
             ) : (
-              <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={dadosDiaSemana} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="dia" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="vendas" fill="#8884d8" name="Vendas" />
-                </BarChart>
-              </ResponsiveContainer>
+              <div style={{ minWidth: 600 }}>
+                <ResponsiveContainer width="100%" height={400}>
+                  <BarChart data={dadosDiaSemana} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="dia" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="vendas" fill="#8884d8" name="Vendas" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             )}
           </div>
         </div>
